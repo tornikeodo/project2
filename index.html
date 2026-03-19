@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodHub - Restaurant</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">🍕 FoodHub</h1>
+                <button class="basket-btn" id="basketBtn">
+                    🛒 Basket (<span id="basketCount">0</span>)
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Filter Section -->
+            <section class="filter-section">
+                <h2>Categories</h2>
+                <div class="categories" id="categoriesContainer">
+                    <button class="category-btn active" data-id="all">All Products</button>
+                </div>
+            </section>
+
+            <!-- Products Section -->
+            <section class="products-section">
+                <h2>Menu</h2>
+                <div class="filters">
+                    <label>
+                        <input type="checkbox" id="vegetarianFilter"> 🥗 Vegetarian
+                    </label>
+                    <label>
+                        <input type="checkbox" id="nutsFilter"> 🥜 Contains Nuts
+                    </label>
+                    <label>
+                        Spiciness:
+                        <input type="range" id="spicyFilter" min="0" max="10" value="10">
+                    </label>
+                </div>
+                <div class="products-grid" id="productsContainer">
+                    <div class="loading">Loading products...</div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Basket Modal -->
+    <div class="basket-modal" id="basketModal">
+        <div class="basket-content">
+            <div class="basket-header">
+                <h2>Shopping Basket</h2>
+                <button class="close-btn" id="closeBasket">&times;</button>
+            </div>
+            <div class="basket-items" id="basketItems">
+                <p class="empty-message">Your basket is empty</p>
+            </div>
+            <div class="basket-footer">
+                <div class="basket-total">
+                    <strong>Total:</strong>
+                    <span id="totalPrice">$0.00</span>
+                </div>
+                <button class="checkout-btn">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
