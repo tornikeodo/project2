@@ -1,4 +1,5 @@
 import { state } from './state.js';
+import { logNetwork } from './logger.js';
 
 const API_BASE_URL = 'https://restaurant.stepprojects.ge/api';
 
@@ -10,7 +11,7 @@ export async function loadCategories() {
         }
         const data = await response.json();
         state.categories = data;
-        console.log('loadCategories: success', { count: Array.isArray(data) ? data.length : null });
+        logNetwork('loadCategories: success', { count: Array.isArray(data) ? data.length : null });
         return data;
     } catch (error) {
         console.error('Error loading categories:', error);
@@ -26,7 +27,7 @@ export async function loadProducts() {
         }
         const data = await response.json();
         state.products = data;
-        console.log('loadProducts: success', { count: Array.isArray(data) ? data.length : null });
+        logNetwork('loadProducts: success', { count: Array.isArray(data) ? data.length : null });
         return data;
     } catch (error) {
         console.error('Error loading products:', error);
@@ -53,7 +54,7 @@ export async function loadFilteredProducts() {
         }
         const data = await response.json();
         state.products = data;
-        console.log('loadFilteredProducts: success', { count: Array.isArray(data) ? data.length : null });
+        logNetwork('loadFilteredProducts: success', { count: Array.isArray(data) ? data.length : null });
         return data;
     } catch (error) {
         console.error('Error filtering products:', error);

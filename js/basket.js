@@ -1,5 +1,6 @@
 import { state } from './state.js';
 import { renderBasketItems, updateBasketTotal } from './render.js';
+import { logNetwork } from './logger.js';
 
 export function addToBasket(productId, price, name, quantity) {
     if (!Number.isFinite(quantity) || quantity < 1) {
@@ -23,19 +24,19 @@ export function addToBasket(productId, price, name, quantity) {
 
     saveBasketToStorage();
     renderBasketItems();
-    console.log('addToBasket: done', { productId, quantity });
+    logNetwork('addToBasket: done', { productId, quantity });
 }
 
 export function removeFromBasket(index) {
     state.basket.splice(index, 1);
     saveBasketToStorage();
     renderBasketItems();
-    console.log('removeFromBasket: done', { index });
+    logNetwork('removeFromBasket: done', { index });
 }
 
 export function saveBasketToStorage() {
     localStorage.setItem('restaurant_basket', JSON.stringify(state.basket));
-    console.log('saveBasketToStorage: done', { count: state.basket.length });
+    logNetwork('saveBasketToStorage: done', { count: state.basket.length });
 }
 
 export function loadBasketFromStorage() {
@@ -44,13 +45,13 @@ export function loadBasketFromStorage() {
         try {
             state.basket = JSON.parse(saved);
             updateBasketTotal();
-            console.log('loadBasketFromStorage: done', { count: state.basket.length });
+            logNetwork('loadBasketFromStorage: done', { count: state.basket.length });
         } catch (error) {
             console.error('Failed to parse saved basket data:', error);
             state.basket = [];
             saveBasketToStorage();
         }
     } else {
-        console.log('loadBasketFromStorage: empty');
+        logNetwork('loadBasketFromStorage: empty');
     }
 }

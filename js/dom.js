@@ -1,3 +1,5 @@
+import { logNetwork } from './logger.js';
+
 export const dom = {
     productsContainer: document.getElementById('productsContainer'),
     categoriesContainer: document.getElementById('categoriesContainer'),
@@ -22,6 +24,6 @@ export function validateDom() {
         return false;
     }
 
-    console.log('validateDom: done');
+    logNetwork('validateDom: done');
     return true;
 }

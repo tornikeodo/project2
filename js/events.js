@@ -3,6 +3,7 @@ import { dom } from './dom.js';
 import { loadFilteredProducts } from './api.js';
 import { renderBasketItems, renderProducts } from './render.js';
 import { addToBasket, removeFromBasket } from './basket.js';
+import { logNetwork } from './logger.js';
 
 export function setupEventListeners() {
     dom.basketBtn.addEventListener('click', () => {
@@ -59,5 +60,5 @@ export function setupEventListeners() {
         removeFromBasket(index);
     });
 
-    console.log('setupEventListeners: done');
+    logNetwork('setupEventListeners: done');
 }

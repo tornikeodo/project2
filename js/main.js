@@ -4,6 +4,7 @@ import { renderCategories, renderProducts } from './render.js';
 import { setupEventListeners } from './events.js';
 import { loadBasketFromStorage } from './basket.js';
 import { state } from './state.js';
+import { logNetwork } from './logger.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     if (!validateDom()) {
@@ -27,5 +28,5 @@ document.addEventListener('DOMContentLoaded', async () => {
         renderProducts();
     }
 
-    console.log('DOMContentLoaded: init complete');
+    logNetwork('DOMContentLoaded: init complete');
 });

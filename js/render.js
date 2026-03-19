@@ -1,5 +1,6 @@
 import { state } from './state.js';
 import { dom } from './dom.js';
+import { logNetwork } from './logger.js';
 
 export function renderCategories(onCategoryChange) {
     if (!Array.isArray(state.categories)) {
@@ -23,7 +24,7 @@ export function renderCategories(onCategoryChange) {
         });
     });
 
-    console.log('renderCategories: done', { count: state.categories.length });
+    logNetwork('renderCategories: done', { count: state.categories.length });
 }
 
 export function renderProducts() {
@@ -34,7 +35,7 @@ export function renderProducts() {
 
     if (state.products.length === 0) {
         dom.productsContainer.innerHTML = '<div class="loading">No products found</div>';
-        console.log('renderProducts: empty');
+        logNetwork('renderProducts: empty');
         return;
     }
 
@@ -58,13 +59,13 @@ export function renderProducts() {
     `).join('');
 
     dom.productsContainer.innerHTML = html;
-    console.log('renderProducts: done', { count: state.products.length });
+    logNetwork('renderProducts: done', { count: state.products.length });
 }
 
 export function renderBasketItems() {
     if (state.basket.length === 0) {
         dom.basketItems.innerHTML = '<p class="empty-message">Your basket is empty</p>';
-        console.log('renderBasketItems: empty');
+        logNetwork('renderBasketItems: empty');
         return;
     }
 
@@ -83,12 +84,12 @@ export function renderBasketItems() {
 
     dom.basketItems.innerHTML = html;
     updateBasketTotal();
-    console.log('renderBasketItems: done', { count: state.basket.length });
+    logNetwork('renderBasketItems: done', { count: state.basket.length });
 }
 
 export function updateBasketTotal() {
     const total = state.basket.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     dom.totalPrice.textContent = `$${total.toFixed(2)}`;
     dom.basketCount.textContent = state.basket.reduce((sum, item) => sum + item.quantity, 0);
-    console.log('updateBasketTotal: done', { total, count: state.basket.length });
+    logNetwork('updateBasketTotal: done', { total, count: state.basket.length });
 }
